@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+  	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <meta charset="utf-8">
+    <style>
+    	.headingFirst {
+    		height: 100px;
+    		font-size: 15px;
+        color: white;
+        font-family: Trebuchet MS;
+        background-color: #5804b3;
+    	}
+    	.flashcardsSection {
+    		margin-top: 25px;
+        margin-bottom: 25px;
+    	}
+    	.newFlashcards {
+    		text-align: center;
+    		border: 1.5px solid #042f66;
+        border-radius: 0px;
+    		height:50px;
+    		width:49.4%;
+        color: white;
+        margin-top: 15px;
+        background-color:#042f66;
+        float:left;
+    	}
+      .newFlashcards:hover {
+        background-color:#5804b3;
+        color: white;
+      }
+      .remFlashcards {
+        text-align: center;
+        border: 1.5px solid #f23346;
+        border-radius: 0px;
+        height:50px;
+        width:49.4%;
+        color: white;
+        margin-top: 15px;
+        background-color:#f23346;
+        float:right;
+      }
+      .remFlashcards:hover {
+        background-color:red;
+        color: white;
+      }
+      .linkHome {
+        color: white;
+      }
+      .linkHome:hover {
+        color: white;
+        text-decoration:none;
+      }
+      .titleSets {
+        height: 100px;
+      }
+      .textBlock {
+        padding: 20px 20px 20px 20px;
+      }
+      .btnTerm {
+        float: right;
+        border-radius: 0px;
+        margin-right: 15px;
+        margin-bottom: 15px;
+        margin-top: 15px;
+      }
+      .btnDelTerm {
+        float: right;
+        border-radius: 0px;
+        margin-bottom: 15px;
+        margin-top: 15px;
+      }
+      .btnHome {
+        float: left;
+        border-radius: 0px;
+        margin: 15px 15px 15px 0px;
+      }
+      .modal-content {
+        border-radius: 0px;
+      }
+    </style>
+    <title>Study This Now</title>
+  </head>
+  <body style="background-color:#ebebeb">
+  	<div class="container-fluid headingFirst">
+  		<div class="container">
+  			<a href="{{ url_for('home') }}" class="linkHome">
+            <h1 style="font-size: 30px; font-weight: 200;line-height: 100px;">Study This Now</h1>
+        </a>
+  		</div>
+  	</div>
+    <div class="container flashcardsSection" style="background-color: white;">
+      <div class="row">
+          <div class="col-md-12">
+            <a href="{{ url_for('home') }}" class="btn btn-secondary btnHome">
+              Go Back To Sets
+            </a>
+            <a href="{{ url_for('term_remove', num=num) }}" class="btn btn-danger btnDelTerm">
+              x Remove Term
+            </a>
+            <button data-toggle="modal" data-target="#myModal" class="btn btn-success btnTerm">
+              + Add Term
+            </button>
+            <div class="modal" id="myModal" tabindex="-1" role="dialog">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">Add Term</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <form method="POST" autocomplete="off">
+                    <div class="modal-body">
+                      <div style="border-radius: 0px;" class="input-group">
+                        <div style="border-radius: 0px;"  class="input-group-prepend">
+                          <span style="border-radius: 0px;" class="input-group-text">Question</span>
+                        </div>
+                        <input style="border-radius: 0px;" class="form-control" aria-label="With textarea" name="question"></textarea>
+                      </div>
+                      <br>
+                      <div style="border-radius: 0px;" class="input-group">
+                        <div style="border-radius: 0px;" class="input-group-prepend">
+                          <span style="border-radius: 0px;" class="input-group-text">Answer</span>
+                        </div>
+                        <input style="border-radius: 0px;" class="form-control" aria-label="With textarea" name="answer"></textarea>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="submit" style="border-radius: 0px;" class="btn btn-primary">Save Term</button>
+                      <button type="button" style="border-radius: 0px;" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  	<div class="container flashcardsSection" style="background-color: white;">
+      <div class="textBlock">
+        <div class="row">
+          <div class="col-md-12">
+            <h2 style="margin-bottom:20px">{{ set.name }}</h2>
+          </div>
+        </div>
+        <div class="row">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scop="col">Question</th>
+                <th scope="col">Answer</th>
+              </tr>
+              <tbody>
+                  {% for entry in set.content %}
+                    <tr>
+                      <td>
+                        {{ entry.question }}
+                      </td>
+                      <td>
+                        {{ entry.answer }}
+                      </td>
+                    </tr>
+                  {% endfor %}
+              </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
