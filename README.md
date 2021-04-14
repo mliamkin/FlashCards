@@ -1,4 +1,4 @@
-# flashcards_app_json
+# FlashCards
 
 1) Start Python Virtual Environment
 
